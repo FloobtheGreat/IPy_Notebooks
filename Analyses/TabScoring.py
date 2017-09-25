@@ -13,11 +13,23 @@ import pandas as pd
 from sklearn.preprocessing import StandardScaler, Imputer
 from sklearn.externals import joblib
 
+
+
+
 helper = HelperPI.Helper()
+
+
+
+tmp = helper.makeTempDir()
+#helper.deleteTemp(tmp)
 
 sql = helper.getSQL(r"C:\users\pairwin\Documents\GitHub\IPy_Notebooks\SQL\TAB_SCORING.sql")
 
-base, dtypesdf = helper.readData(sql)
+file = helper.readDataToCSV(sql, tmp)
+
+
+
+#base, dtypesdf = helper.readData(sql)
 #base = pd.read_csv(r'C:\users\pairwin\Documents\GitHub\IPy_Notebooks\SQL\tab_model.csv', parse_dates=['DATE_VALUE'])
 #base = pd.read_csv(r'/home/pirwin/Git/IPy_Notebooks/SQL/tab_model.csv',parse_dates=['DATE_VALUE'])
 #dtypes = helper.getDtypes(base)
