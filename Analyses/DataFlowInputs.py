@@ -31,6 +31,14 @@ for i in flows['onboardFlows']:
         
 df = pd.DataFrame(lst, columns=['DATAFLOW', 'INPUT', 'ID'])
 
+df.to_csv('DOMO_DataFlow_Inputs.csv', index=False)
 
+url = 'https://basspro.domo.com/api/data/v3/datasources/a419bd8d-081c-4d4e-8f1b-2cdf74e6033b/dataversions'
+
+header = { 'content-type':'text/csv', 
+          'X-DOMO-Developer-Token': '0af2ea4c1a470d96b02bda43f93d7ca80572d128f1076bf6'}
+p = requests.post(url, 
+                 headers = header,
+                 data = open(r'DOMO_DataFlow_Inputs.csv', 'rb'))
 
 print(time.time() - t)
